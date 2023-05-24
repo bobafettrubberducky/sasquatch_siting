@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex">
+
+    <!--^ ************ Register Form ************ -->
+
+    <form action="/register" method="post" class="bg-dark text-light col-4 p-4">
+
+        <!--! *********** Register Error *************-->
+        {% with messages = get_flashed_messages(category_filter=['register']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <!--! Register Error -->
+
+
+
+        <h2>Register</h2>
+        <div class="form-group">
+            <label for="first_name">FIRST NAME:</label>
+            <input type="text" name="first_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="last_name">LAST NAME:</label>
+            <input type="text" name="last_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">EMAIL:</label>
+            <input type="text" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">PASSWORD:</label>
+            <input type="text" name="password" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="confirm">CONFIRM PASSWORD:</label>
+            <input type="text" name="confirm" class="form-control">
+        </div>
+
+        <input type="submit" value="Register" class="btn btn-success">
+
+    </form>
+
+    <!--^ ************ LOGIN Form ************ -->
+    <form action="/login" method="POST" class="bg-dark text-light col-4 p-4">
+
+        <!--? *********** Register Error *************-->
+        {% with messages = get_flashed_messages(category_filter=['login']) %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <!--? Register Error -->
+
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="text" name="password" class="form-control">
+        </div>
+
+        <input type="submit" value="Login" class="btn btn-success">
+
+    </form>
+{% endblock %}

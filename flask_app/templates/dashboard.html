@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="d-flex justify-content-between align-items-center col-12">
+    <h2>Sasquatch Websighting</h2>
+    <div class=" col-4 justify-content-end justify-content-around">
+        <h3>{{user.first_name}} {{user.last_name}}</h3>
+        <div class="ml-3">
+            <a href="/new/sighting" class="btn btn-into bg-success text-white ">+ Report a Sighting</a>
+        </div>
+        <div class="ml-3">
+            <a href="/logout" class="btn btn-into bg-danger text-white"> Logout</a>
+        </div>
+        
+    </div>
+</nav>
+
+
+<div class="col-8 mx-auto">
+
+    <h4>Reported Sightings</h4>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Reported by</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sighting in sightings %}
+        <tr>
+            <td>{{sighting.location}}</td>
+            <td>{{sighting.date}}</td>
+            <td>{{sighting.user.first_name}} {{sighting.user.last_name}}</td>
+
+            <td>
+            <a href="/sighting/{{sighting.id}}">View</a>
+
+            {% if sighting.user_id == session.user_id %}
+            <a href="/edit/sighting/{{sighting.id}}">Edit</a>
+            <a href="/destroy/sighting/{{sighting.id}}">Delete</a>
+            {% endif %}
+
+            </td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

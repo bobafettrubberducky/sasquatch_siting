@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="d-flex justify-content-between align-items-center col-12">
+    <h1>Sasquatch Websighting</h1>
+    <div class=" col-4 justify-content-end justify-content-around">
+        <h1>{{user_data.first_name}} {{user_data.last_name}}</h1>
+        <div>
+            <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+        </div>
+        <div>
+            <a href="/logout" class="btn btn-danger ">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<form action="/update/sighting/{{edit.id}}" method="post">
+    <h2>Edit This Sighting</h2>
+
+
+    <div class="d-flex justify-content-between col-10 bg-dark text-white grid gap-3  mx-auto">
+
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" name="location" class="form-control" value="{{edit.location}}">
+        </div>
+        <div class="form-group">
+            <label for="description">What Happened:</label>
+            <textarea cols="30" rows="5" name="description" class="form-control">{{edit.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" name="date" class="form-control" value="{{edit.date.strftime('%Y-%m-%d')}}">
+        </div>
+
+        <div class="form-group">
+            <label for="number"># of Sasquatches:</label>
+            <input type="number" name="number" class="form-control" value="{{edit.number}}">
+        </div>
+
+    </div>
+    <br>
+
+    <input type="submit" value="Report" class="btn btn-success">
+</form>
+{% endblock %}
